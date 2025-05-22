@@ -2,12 +2,15 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import AnimatedSection from "../components/AnimatedSection";
+import CallToAction from "../components/CallToAction";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import ModernContactForm from "../components/ModernContactForm";
+import Pricing from "../components/Pricing";
 import StatsSection from "../components/StatsSection";
 import Technologies from "../components/Technologies";
 import Templates from "../components/Templates";
+import Testimonials from "../components/Testimonials";
 import WhyUsSection from "../components/WhyUsSection";
 
 // Styled components
@@ -172,11 +175,35 @@ export default function Home() {
             </AnimatedSection>
 
             <AnimatedSection 
+              aria-label="Client Testimonials" 
+              delay={0.35}
+              className="w-full h-full lg:px-10 py-16 lg:py-40 border-b-[1px] border-slate-400 px-8"
+            >
+              <Testimonials />
+            </AnimatedSection>
+
+            <AnimatedSection 
               aria-label="Our Technologies" 
               delay={0.4}
               className="hidden lg:inline w-full h-full lg:px-10 lg:pt-20 pb-20 border-y-[1px] border-slate-400 space-y-16"
             >
               <Technologies />
+            </AnimatedSection>
+
+            <AnimatedSection 
+              aria-label="Pricing Plans" 
+              delay={0.45}
+              className="w-full h-full lg:px-10 py-16 lg:py-40 border-b-[1px] border-slate-400 px-8"
+            >
+              <Pricing />
+            </AnimatedSection>
+
+            <AnimatedSection 
+              aria-label="Call To Action" 
+              delay={0.48}
+              className="w-full h-full lg:px-10 py-16 lg:py-24 border-b-[1px] border-slate-400 px-8"
+            >
+              <CallToAction />
             </AnimatedSection>
 
             <AnimatedSection 
