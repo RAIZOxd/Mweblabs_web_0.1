@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import AnimatedSection from "../components/AnimatedSection";
+import AnimatedSection from "../components/animatedsection";
 import CallToAction from "../components/CallToAction";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
@@ -78,12 +78,16 @@ export default function Home() {
       );
     }
 
+    // Create elements to track for cleanup
+    const elementsToCleanup = [];
+
     // Add French meta description
     const frMetaDesc = document.createElement('meta');
     frMetaDesc.name = 'description';
     frMetaDesc.setAttribute('lang', 'fr');
     frMetaDesc.content = "XWebLabs propose des solutions innovantes de développement web et d'expériences numériques. Transformez votre présence en ligne avec notre équipe d'experts développeurs et designers.";
     document.head.appendChild(frMetaDesc);
+    elementsToCleanup.push(frMetaDesc);
 
     // Add French title meta
     const frTitleMeta = document.createElement('meta');
@@ -91,6 +95,7 @@ export default function Home() {
     frTitleMeta.setAttribute('lang', 'fr');
     frTitleMeta.content = "XWebLabs | Solutions Professionnelles de Développement Web et Numérique";
     document.head.appendChild(frTitleMeta);
+    elementsToCleanup.push(frTitleMeta);
 
     // Add JSON-LD structured data with bilingual support
     const script = document.createElement('script');
@@ -125,9 +130,15 @@ export default function Home() {
       }
     });
     document.head.appendChild(script);
+    elementsToCleanup.push(script);
 
+    // Improved cleanup function
     return () => {
-      document.head.removeChild(script);
+      elementsToCleanup.forEach(element => {
+        if (element && element.parentNode) {
+          element.parentNode.removeChild(element);
+        }
+      });
     };
   }, []);
 

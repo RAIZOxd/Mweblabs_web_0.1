@@ -49,20 +49,20 @@ export default function Footer() {
   };
   
   const socialLinks = [
-    { icon: <FaInstagram size={18} />, url: "#", name: "Instagram" },
-    { icon: <FaXTwitter size={18} />, url: "#", name: "Twitter" },
-    { icon: <FaLinkedinIn size={18} />, url: "#", name: "LinkedIn" },
-    { icon: <FaGithub size={18} />, url: "#", name: "GitHub" },
+    { icon: <FaInstagram size={18} />, url: "https://github.com/RAIZOxd", name: "Instagram" },
+    { icon: <FaXTwitter size={18} />, url: "https://github.com/RAIZOxd", name: "Twitter" },
+    { icon: <FaLinkedinIn size={18} />, url: "https://github.com/RAIZOxd", name: "LinkedIn" },
+    { icon: <FaGithub size={18} />, url: "https://github.com/RAIZOxd", name: "GitHub" },
   ];
   
   const footerSections = [
     {
       title: "Quick Links",
       links: [
-        { name: "Home", url: "./home" },
-        { name: "Projects", url: "./projects" },
-        { name: "About", url: "./about" },
-        { name: "Contact", url: "./contact" },
+        { name: "Home", url: "/" },
+        { name: "Projects", url: "/projects" },
+        { name: "About", url: "/about" },
+        { name: "Contact", url: "/contact" },
       ]
     },
     {
@@ -159,23 +159,48 @@ export default function Footer() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: 0.5 + (linkIndex * 0.05) }}
                   >
-                    <FooterLink 
-                      href={link.url}
-                      className="text-slate-300 hover:text-white transition-colors duration-300"
-                      onMouseEnter={() => setHoveredLink(`${sectionIndex}-${linkIndex}`)}
-                      onMouseLeave={() => setHoveredLink(null)}
-                    >
-                      {link.name}
-                      {hoveredLink === `${sectionIndex}-${linkIndex}` && (
-                        <motion.span 
-                          layoutId="hoverIndicator"
-                          className="absolute bottom-0 left-0 h-0.5 bg-purple-500"
-                          initial={{ width: 0 }}
-                          animate={{ width: "100%" }}
-                          transition={{ duration: 0.2 }}
-                        />
-                      )}
-                    </FooterLink>
+                    {link.url.startsWith('#') ? (
+                      <FooterLink 
+                        href={link.url}
+                        className="text-slate-300 hover:text-white transition-colors duration-300"
+                        onMouseEnter={() => setHoveredLink(`${sectionIndex}-${linkIndex}`)}
+                        onMouseLeave={() => setHoveredLink(null)}
+                      >
+                        {link.name}
+                        {hoveredLink === `${sectionIndex}-${linkIndex}` && (
+                          <motion.span 
+                            layoutId="hoverIndicator"
+                            className="absolute bottom-0 left-0 h-0.5 bg-purple-500"
+                            initial={{ width: 0 }}
+                            animate={{ width: "100%" }}
+                            transition={{ duration: 0.2 }}
+                          />
+                        )}
+                      </FooterLink>
+                    ) : (
+                      <Link 
+                        to={link.url}
+                        onClick={handleLinkClick}
+                      >
+                        <FooterLink 
+                          as="span"
+                          className="text-slate-300 hover:text-white transition-colors duration-300"
+                          onMouseEnter={() => setHoveredLink(`${sectionIndex}-${linkIndex}`)}
+                          onMouseLeave={() => setHoveredLink(null)}
+                        >
+                          {link.name}
+                          {hoveredLink === `${sectionIndex}-${linkIndex}` && (
+                            <motion.span 
+                              layoutId="hoverIndicator"
+                              className="absolute bottom-0 left-0 h-0.5 bg-purple-500"
+                              initial={{ width: 0 }}
+                              animate={{ width: "100%" }}
+                              transition={{ duration: 0.2 }}
+                            />
+                          )}
+                        </FooterLink>
+                      </Link>
+                    )}
                   </motion.li>
                 ))}
               </ul>
