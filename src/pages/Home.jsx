@@ -4,11 +4,11 @@ import styled from "styled-components";
 import AnimatedSection from "../components/AnimatedSection";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
+import ModernContactForm from "../components/ModernContactForm";
+import StatsSection from "../components/StatsSection";
 import Technologies from "../components/Technologies";
 import Templates from "../components/Templates";
 import WhyUsSection from "../components/WhyUsSection";
-import StatsSection from "../components/StatsSection";
-import ModernContactForm from "../components/ModernContactForm";
 
 // Styled components
 const HomeContainer = styled.div`
@@ -185,7 +185,7 @@ export default function Home() {
               className="w-full h-full lg:px-10 py-16 lg:py-40 border-slate-400 px-8"
             >
               <motion.h2 
-                className="text-4xl font-bold text-center mb-8"
+                className="text-4xl lg:text-6xl font-righteous tracking-tight text-center pb-10"
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

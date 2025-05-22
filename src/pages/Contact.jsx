@@ -1,7 +1,7 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import { useEffect, useState } from "react";
 import ContactForm from "../components/ContactForm";
-import { useState, useEffect } from "react";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 const Contact = () => {
   const [navHeight, setNavHeight] = useState(null);
@@ -93,8 +93,8 @@ const Contact = () => {
       <main className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <header className="mb-8">
-            <h1 className="text-4xl font-bold text-center">Contact Us</h1>
-            <p className="mt-4 text-center text-slate-300">
+            <h1 className="text-4xl lg:text-6xl font-righteous uppercase text-center">Contact Us</h1>
+            <p className="mt-4 text-center text-slate-300 pt-10">
               Ready to transform your digital presence? Get in touch with our expert team today.
               We're here to help bring your vision to life.
             </p>

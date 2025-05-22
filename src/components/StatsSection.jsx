@@ -98,7 +98,7 @@ const StatsSection = () => {
       transition={{ duration: 0.8 }}
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">
+        <h2 className="text-4xl lg:text-6xl font-righteous tracking-tight text-center pb-10">
           Our Success in Numbers
         </h2>
         
