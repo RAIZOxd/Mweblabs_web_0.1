@@ -1,12 +1,14 @@
-import { motion } from "framer-motion";
-import React, { useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import ContactForm from "../components/ContactForm";
+import AnimatedSection from "../components/AnimatedSection";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import Technologies from "../components/Technologies";
 import Templates from "../components/Templates";
 import WhyUsSection from "../components/WhyUsSection";
+import StatsSection from "../components/StatsSection";
+import ModernContactForm from "../components/ModernContactForm";
 
 // Styled components
 const HomeContainer = styled.div`
@@ -47,7 +49,22 @@ const CardContainer = styled.div`
   margin-top: 3rem;
 `;
 
+// Parallax container
+const ParallaxContainer = styled(motion.div)`
+  position: relative;
+  overflow: hidden;
+`;
+
 export default function Home() {
+  const mainRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: mainRef,
+    offset: ["start start", "end end"]
+  });
+  
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
+
   useEffect(() => {
     // Add meta tags dynamically for Home page - English
     document.title = "MWebLabs | Professional Web Development & Digital Solutions";
@@ -113,40 +130,93 @@ export default function Home() {
 
   return (
     <>
-      <Hero />
-      <main className="lg:px-36 mt-5 lg:mt-0 pt-24 lg:pt-0 text-slate-300">
-        <div className="flex flex-col justify-between lg:border-x-[1px] border-slate-400 lg:pt-40">
-          <section aria-label="Why Choose Us">
-            <WhyUsSection />
-          </section>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <Hero />
+      </motion.div>
+      
+      <ParallaxContainer
+        ref={mainRef}
+        style={{ opacity, scale }}
+      >
+        <main className="lg:px-36 mt-5 lg:mt-0 pt-24 lg:pt-0 text-slate-300">
+          <div className="flex flex-col justify-between lg:border-x-[1px] border-slate-400 lg:pt-40">
+            
+            <AnimatedSection 
+              aria-label="Why Choose Us" 
+              delay={0.2}
+              className=""
+            >
+              <WhyUsSection />
+            </AnimatedSection>
 
-          <section aria-label="Our Templates" className="flex justify-center items-center w-full h-full lg:px-10 lg:py-40 py-24 border-b-[1px] border-slate-400 px-8">
-            <div className="w-full h-full">
-              <Templates />
-            </div>
-          </section>
+            <AnimatedSection 
+              aria-label="Our Stats" 
+              delay={0.25}
+              className="w-full h-full lg:px-10 py-16 lg:py-24 border-b-[1px] border-slate-400 px-8"
+            >
+              <StatsSection />
+            </AnimatedSection>
 
-          {/* <section aria-label="Client Testimonials" className="w-full h-full lg:px-10 py-16 lg:py-40 border-b-[1px] border-slate-400 px-8">
-            <Testemonials />
-          </section> */}
+            <AnimatedSection 
+              aria-label="Our Templates" 
+              delay={0.3}
+              className="flex justify-center items-center w-full h-full lg:px-10 lg:py-40 py-24 border-b-[1px] border-slate-400 px-8"
+            >
+              <div className="w-full h-full">
+                <Templates />
+              </div>
+            </AnimatedSection>
 
-          <section aria-label="Our Technologies" className="hidden lg:inline w-full h-full lg:px-10 lg:pt-20 pb-20 border-y-[1px] border-slate-400 space-y-16">
-            <Technologies />
-          </section>
+            <AnimatedSection 
+              aria-label="Our Technologies" 
+              delay={0.4}
+              className="hidden lg:inline w-full h-full lg:px-10 lg:pt-20 pb-20 border-y-[1px] border-slate-400 space-y-16"
+            >
+              <Technologies />
+            </AnimatedSection>
 
-          {/* <section aria-label="Pricing Plans" className="w-full h-full lg:px-10 lg:pb-40 border-b-[1px] border-slate-400 px-8">
-            <Pricing />
-          </section> */}
-
-          <section aria-label="Contact Form" className="w-full h-full lg:px-10 py-16 lg:py-40 border-slate-400 px-8">
-            <h2 className="text-4xl font-bold text-center mb-8">Contact Us</h2>
-            <ContactForm />
-          </section>
-        </div>
-      </main>
-      <Footer/>
+            <AnimatedSection 
+              aria-label="Contact Form" 
+              delay={0.5}
+              className="w-full h-full lg:px-10 py-16 lg:py-40 border-slate-400 px-8"
+            >
+              <motion.h2 
+                className="text-4xl font-bold text-center mb-8 glow-text"
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                Get In Touch
+              </motion.h2>
+              <motion.p
+                className="text-center text-gray-300 max-w-2xl mx-auto mb-12"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                Have a project in mind? We'd love to hear from you. Drop us a message and we'll get back to you as soon as possible.
+              </motion.p>
+              <div className="max-w-3xl mx-auto">
+                <ModernContactForm />
+              </div>
+            </AnimatedSection>
+          </div>
+        </main>
+      </ParallaxContainer>
+      
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        <Footer/>
+      </motion.div>
     </>
   );
 }
-
-// The duplicate Home component declaration has been removed
