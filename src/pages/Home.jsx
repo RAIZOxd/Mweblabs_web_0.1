@@ -1,14 +1,51 @@
+import { motion } from "framer-motion";
 import React, { useEffect } from "react";
-import Hero from "../components/Hero";
-import Templates from "../components/Templates";
-import Testemonials from "../components/Testomonials";
-import TechBlock from "../components/TechBlock";
-import Pricing from "../components/Pricing";
-import image1 from "../assets/images/1.png";
-import WhyUsSection from "../components/WhyUsSection";
+import styled from "styled-components";
 import ContactForm from "../components/ContactForm";
-import Technologies from "../components/Technologies";
 import Footer from "../components/Footer";
+import Hero from "../components/Hero";
+import Technologies from "../components/Technologies";
+import Templates from "../components/Templates";
+import WhyUsSection from "../components/WhyUsSection";
+
+// Styled components
+const HomeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+`;
+
+const Title = styled(motion.h1)`
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, #4f46e5, #9f7aea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`;
+
+const Subtitle = styled(motion.p)`
+  font-size: 1.5rem;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+`;
+
+const CardContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 3rem;
+`;
 
 export default function Home() {
   useEffect(() => {
@@ -111,3 +148,5 @@ export default function Home() {
     </>
   );
 }
+
+// The duplicate Home component declaration has been removed
