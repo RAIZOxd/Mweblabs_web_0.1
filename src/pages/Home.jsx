@@ -185,7 +185,7 @@ export default function Home() {
               className="w-full h-full lg:px-10 py-16 lg:py-40 border-slate-400 px-8"
             >
               <motion.h2 
-                className="text-4xl font-bold text-center mb-8 glow-text"
+                className="text-4xl font-bold text-center mb-8"
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

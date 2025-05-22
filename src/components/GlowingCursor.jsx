@@ -14,36 +14,59 @@ const CursorCircle = styled.div`
   transition: transform 0.1s ease;
   filter: blur(5px);
   box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
+  
+  @media (max-width: 768px), (max-width: 240px) {
+    display: none;
+  }
 `;
 
 const GlowingCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const updatePosition = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-      if (!isVisible) setIsVisible(true);
+    // Check if device is mobile or small screen
+    const checkDevice = () => {
+      setIsMobile(window.innerWidth <= 768 || window.innerWidth <= 240);
     };
 
-    const handleMouseLeave = () => {
-      setIsVisible(false);
-    };
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
 
-    const handleMouseEnter = () => {
-      setIsVisible(true);
-    };
+    // Only add mouse tracking if not mobile
+    if (!isMobile) {
+      const updatePosition = (e) => {
+        setPosition({ x: e.clientX, y: e.clientY });
+        if (!isVisible) setIsVisible(true);
+      };
 
-    window.addEventListener("mousemove", updatePosition);
-    document.addEventListener("mouseleave", handleMouseLeave);
-    document.addEventListener("mouseenter", handleMouseEnter);
+      const handleMouseLeave = () => {
+        setIsVisible(false);
+      };
+
+      const handleMouseEnter = () => {
+        setIsVisible(true);
+      };
+
+      window.addEventListener("mousemove", updatePosition);
+      document.addEventListener("mouseleave", handleMouseLeave);
+      document.addEventListener("mouseenter", handleMouseEnter);
+
+      return () => {
+        window.removeEventListener("mousemove", updatePosition);
+        document.removeEventListener("mouseleave", handleMouseLeave);
+        document.removeEventListener("mouseenter", handleMouseEnter);
+      };
+    }
 
     return () => {
-      window.removeEventListener("mousemove", updatePosition);
-      document.removeEventListener("mouseleave", handleMouseLeave);
-      document.removeEventListener("mouseenter", handleMouseEnter);
+      window.removeEventListener('resize', checkDevice);
     };
-  }, [isVisible]);
+  }, [isVisible, isMobile]);
+
+  // Don't render cursor on mobile
+  if (isMobile) return null;
 
   return (
     <CursorCircle
