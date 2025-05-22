@@ -179,7 +179,7 @@ export default function Navbar({ getNavHeight }) {
               </Link>
             </div>
             <div className="text-sm text-gray-400 pt-8">
-              <p>© 2024 M.WEBLABS. All rights reserved.</p>
+              <p>© 2025 M.WEBLABS. All rights reserved.</p>
             </div>
           </div>
         </div>
