@@ -70,11 +70,11 @@ export default function Home() {
 
   useEffect(() => {
     // Add meta tags dynamically for Home page - English
-    document.title = "MWebLabs | Professional Web Development & Digital Solutions";
+    document.title = "XWebLabs | Professional Web Development & Digital Solutions";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute("content", 
-        "MWebLabs delivers innovative web development solutions and digital experiences. Transform your online presence with our expert team of developers and designers."
+        "XWebLabs delivers innovative web development solutions and digital experiences. Transform your online presence with our expert team of developers and designers."
       );
     }
 
@@ -82,14 +82,14 @@ export default function Home() {
     const frMetaDesc = document.createElement('meta');
     frMetaDesc.name = 'description';
     frMetaDesc.setAttribute('lang', 'fr');
-    frMetaDesc.content = "MWebLabs propose des solutions innovantes de développement web et d'expériences numériques. Transformez votre présence en ligne avec notre équipe d'experts développeurs et designers.";
+    frMetaDesc.content = "XWebLabs propose des solutions innovantes de développement web et d'expériences numériques. Transformez votre présence en ligne avec notre équipe d'experts développeurs et designers.";
     document.head.appendChild(frMetaDesc);
 
     // Add French title meta
     const frTitleMeta = document.createElement('meta');
     frTitleMeta.name = 'title';
     frTitleMeta.setAttribute('lang', 'fr');
-    frTitleMeta.content = "MWebLabs | Solutions Professionnelles de Développement Web et Numérique";
+    frTitleMeta.content = "XWebLabs | Solutions Professionnelles de Développement Web et Numérique";
     document.head.appendChild(frTitleMeta);
 
     // Add JSON-LD structured data with bilingual support
@@ -98,8 +98,8 @@ export default function Home() {
     script.text = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "url": "https://mweblabs.agency",
-      "name": "MWebLabs",
+      "url": "https://xweblabs.agency",
+      "name": "XWebLabs",
       "description": [
         {
           "@language": "en",

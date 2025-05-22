@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import menuIcon from "../assets/images/icons/menu.svg";
 import cross from "../assets/images/icons/cross.svg";
+import menuIcon from "../assets/images/icons/menu.svg";
 
 export default function Navbar({ getNavHeight }) {
   const [menuState, setMenuState] = useState(false);

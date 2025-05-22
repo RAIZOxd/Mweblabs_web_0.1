@@ -1,116 +1,293 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FaInstagram } from "react-icons/fa";
+import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const GlowingIcon = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(126, 34, 206, 0.1);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(126, 34, 206, 0.3);
+    box-shadow: 0 0 15px rgba(126, 34, 206, 0.6);
+  }
+`;
+
+const FooterLink = styled(motion.a)`
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: linear-gradient(90deg, #7e22ce, #4f46e5);
+    transition: width 0.3s ease;
+  }
+  
+  &:hover::after {
+    width: 100%;
+  }
+`;
 
 export default function Footer() {
+  const [hoveredLink, setHoveredLink] = useState(null);
+  
   const handleLinkClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    setMenuState(false);
   };
+  
+  const socialLinks = [
+    { icon: <FaInstagram size={18} />, url: "#", name: "Instagram" },
+    { icon: <FaXTwitter size={18} />, url: "#", name: "Twitter" },
+    { icon: <FaLinkedinIn size={18} />, url: "#", name: "LinkedIn" },
+    { icon: <FaGithub size={18} />, url: "#", name: "GitHub" },
+  ];
+  
+  const footerSections = [
+    {
+      title: "Quick Links",
+      links: [
+        { name: "Home", url: "./home" },
+        { name: "Projects", url: "./projects" },
+        { name: "About", url: "./about" },
+        { name: "Contact", url: "./contact" },
+      ]
+    },
+    {
+      title: "Services",
+      links: [
+        { name: "Web Development", url: "#" },
+        { name: "UI/UX Design", url: "#" },
+        { name: "E-commerce Solutions", url: "#" },
+        { name: "Custom Web Applications", url: "#" },
+      ]
+    }
+  ];
+  
   return (
-    <footer className="bg-backGround text-white border-t border-slate-500 ">
-      <div className="px-4 lg:px-36 py-12">
+    <footer className="bg-gradient-to-b from-backGround to-slate-900 text-white border-t border-slate-800">
+      <div className="px-4 lg:px-36 py-16">
         {/* Top Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12"
+        >
           {/* Brand Section */}
-          <div className="space-y-4">
-            <div className="text-xl font-[600]">
+          <motion.div 
+            className="space-y-6"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <motion.div 
+              className="text-2xl font-bold"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
               <p>
-                <span className="text-purple-700">M</span>.WEBLABS
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 font-extrabold">M</span>
+                <span className="text-white">.WEBLABS</span>
               </p>
-            </div>
-            <p className="text-slate-300 font-extralight">
+            </motion.div>
+            <p className="text-slate-300 leading-relaxed">
               Transforming ideas into exceptional web experiences. Your vision,
               our expertise.
             </p>
-          </div>
+            <div className="flex space-x-3 pt-2">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -5 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.1 * index }}
+                >
+                  <GlowingIcon className="text-purple-500">
+                    {social.icon}
+                  </GlowingIcon>
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Quick Links</h3>
-            <ul className="space-y-2 font-extralight">
-              <li>
-                <a href="./home" className="hover:text-purple-700">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="./projects" className="hover:text-purple-700">
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a href="./about" className="hover:text-purple-700">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="./contact" className="hover:text-purple-700">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Services</h3>
-            <ul className="space-y-2 font-extralight">
-              <li>Web Development</li>
-              <li>UI/UX Design</li>
-              <li>E-commerce Solutions</li>
-              <li>Custom Web Applications</li>
-            </ul>
-          </div>
+          {/* Quick Links & Services */}
+          {footerSections.map((section, sectionIndex) => (
+            <motion.div 
+              key={sectionIndex}
+              className="space-y-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 + (sectionIndex * 0.1) }}
+            >
+              <h3 className="text-lg font-semibold relative inline-block">
+                {section.title}
+                <motion.span 
+                  className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-purple-600 to-indigo-600"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "100%" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 + (sectionIndex * 0.1) }}
+                />
+              </h3>
+              <ul className="space-y-3">
+                {section.links.map((link, linkIndex) => (
+                  <motion.li 
+                    key={linkIndex}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: 0.5 + (linkIndex * 0.05) }}
+                  >
+                    <FooterLink 
+                      href={link.url}
+                      className="text-slate-300 hover:text-white transition-colors duration-300"
+                      onMouseEnter={() => setHoveredLink(`${sectionIndex}-${linkIndex}`)}
+                      onMouseLeave={() => setHoveredLink(null)}
+                    >
+                      {link.name}
+                      {hoveredLink === `${sectionIndex}-${linkIndex}` && (
+                        <motion.span 
+                          layoutId="hoverIndicator"
+                          className="absolute bottom-0 left-0 h-0.5 bg-purple-500"
+                          initial={{ width: 0 }}
+                          animate={{ width: "100%" }}
+                          transition={{ duration: 0.2 }}
+                        />
+                      )}
+                    </FooterLink>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
 
           {/* Contact Info */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Contact Us</h3>
-            <div className="space-y-2 font-extralight">
-              <p>Email: marocweblabs@gmail.com</p>
-              <p>Phone: +212 622 23 25 04</p>
-              <div className="flex items-center space-x-1">
-                <FaInstagram />
-                <a
-                  href="https://www.instagram.com/mweblabs"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>mweblabs</span>
-                </a>
-              </div>
-              <div className="flex items-center space-x-1">
-                <FaXTwitter />
-                <a
-                  href="https://twitter.com/mweblabs"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>mweblabs</span>
-                </a>
-              </div>
-              <div>
+          <motion.div 
+            className="space-y-6"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <h3 className="text-lg font-semibold relative inline-block">
+              Contact Us
+              <motion.span 
+                className="absolute -bottom-1 left-0 h-[2px] bg-gradient-to-r from-purple-600 to-indigo-600"
+                initial={{ width: 0 }}
+                whileInView={{ width: "100%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              />
+            </h3>
+            <div className="space-y-4">
+              <motion.p 
+                className="flex items-center text-slate-300"
+                whileHover={{ x: 5, color: "#fff" }}
+              >
+                <span className="w-5 h-5 mr-3 flex items-center justify-center text-purple-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </span>
+                mweblabs@gmail.com
+              </motion.p>
+              <motion.p 
+                className="flex items-center text-slate-300"
+                whileHover={{ x: 5, color: "#fff" }}
+              >
+                <span className="w-5 h-5 mr-3 flex items-center justify-center text-purple-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </span>
+                +212 622 23 25 04
+              </motion.p>
+              <div className="pt-4">
                 <Link to="/contact">
-                  <button
+                  <motion.button
                     onClick={handleLinkClick}
-                    className="bg-purple-900 hover:bg-purple-800 transition-colors duration-200 text-slate-200 w-36 h-12 rounded-full mt-4"
+                    className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-indigo-600 text-white w-full md:w-auto px-8 py-3 rounded-lg font-medium"
+                    whileHover={{ 
+                      scale: 1.05,
+                      boxShadow: "0 0 15px rgba(126, 34, 206, 0.6)"
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.7 }}
                   >
-                    GET IN TOUCH
-                  </button>
+                    <span className="relative z-10">GET IN TOUCH</span>
+                    <motion.span 
+                      className="absolute inset-0 bg-white"
+                      initial={{ x: "-100%", opacity: 0.3 }}
+                      whileHover={{ x: "100%" }}
+                      transition={{ duration: 0.5 }}
+                      style={{ mixBlendMode: "overlay" }}
+                    />
+                  </motion.button>
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Bottom Section */}
-        <div className="pt-8 border-t border-slate-500 flex flex-col lg:flex-row justify-center items-center space-y-4 lg:space-y-0 font-extralight">
-          <p className="text-slate-300">
-            © 2069 <span className="text-purple-700">M.</span>WEBLABS | All
+        <motion.div 
+          className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+        >
+          <p className="text-slate-400 text-sm">
+            © 2025 <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 font-bold">M.</span>WEBLABS | All
             rights reserved.
           </p>
-        </div>
+          <div className="flex space-x-6 text-sm text-slate-400">
+            <motion.a 
+              href="#" 
+              className="hover:text-white transition-colors duration-300"
+              whileHover={{ y: -2 }}
+            >
+              Privacy Policy
+            </motion.a>
+            <motion.a 
+              href="#" 
+              className="hover:text-white transition-colors duration-300"
+              whileHover={{ y: -2 }}
+            >
+              Terms of Service
+            </motion.a>
+            <motion.a 
+              href="#" 
+              className="hover:text-white transition-colors duration-300"
+              whileHover={{ y: -2 }}
+            >
+              Sitemap
+            </motion.a>
+          </div>
+        </motion.div>
       </div>
     </footer>
   );
