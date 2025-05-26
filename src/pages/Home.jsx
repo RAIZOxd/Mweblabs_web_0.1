@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
+import AnimatedSection from "../components/AnimatedSection";
 import CallToAction from "../components/CallToAction";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
