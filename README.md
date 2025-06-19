@@ -67,12 +67,8 @@ The built files will be in the `dist` directory.
 
 ## License
 
-This project is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. This means:
-
 - ✅ You can share and use this code
-- ❌ Commercial use is not permitted
-- ❌ Modifications are not permitted
-- ℹ️ Attribution is required
+- ✅ Copyright (c) 2025 Kavishka Vithanage
 
 See the [LICENSE](LICENSE) file for more details.
 
@@ -85,4 +81,4 @@ Due to the license restrictions, modifications are not permitted. However, you c
 
 ## Contact
 
-For any questions or concerns, please use the contact form on the website.
+Please contact me at kavishka.tv99@gmail.com if you have any feedback for the website. :star: Star it, if you like it!
