@@ -101,7 +101,7 @@ export default function Footer() {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <p>
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 font-extrabold">M</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 font-extrabold">X</span>
                 <span className="text-white">.WEBLABS</span>
               </p>
             </motion.div>

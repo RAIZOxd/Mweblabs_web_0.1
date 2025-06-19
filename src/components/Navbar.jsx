@@ -78,7 +78,7 @@ export default function Navbar({ getNavHeight }) {
           onClick={handleLinkClick}
         >
           <p>
-            <span className="text-purple-700">M</span>.WEBLABS
+            <span className="text-purple-700">X</span>.WEBLABS
           </p>
         </Link>
         <div
@@ -179,7 +179,7 @@ export default function Navbar({ getNavHeight }) {
               </Link>
             </div>
             <div className="text-sm text-gray-400 pt-8">
-              <p>© 2025 M.WEBLABS. All rights reserved.</p>
+              <p>© 2025 X.WEBLABS. All rights reserved.</p>
             </div>
           </div>
         </div>

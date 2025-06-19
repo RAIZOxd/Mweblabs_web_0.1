@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import image2 from "../assets/images/girlImage.jpg";
-import image3 from "../assets/images/squaredGirlImage.jpg";
 import Logo from "../assets/images/logo/agencyLogo.gif";
+import image3 from "../assets/images/squaredGirlImage.jpg";
 import Navbar from "./Navbar";
 import TechBlock from "./TechBlock";
-import { Link } from "react-router-dom";
 
 export default function Hero() {
   const [navHeight, setNavHeight] = useState(null);
@@ -50,7 +50,7 @@ export default function Hero() {
           </h1>
           <div>
             <p className="lg:hidden text-xl font-light">
-              Welcome to M.weblabs. Elevate your brand with our innovative
+              Welcome to X.weblabs. Elevate your brand with our innovative
               websites and strategic solutions. Experience excellence online!
             </p>
           </div>
@@ -70,7 +70,7 @@ export default function Hero() {
           <div className="flex flex-col items-center justify-center lg:hidden space-y-8">
             <img
               src={image3}
-              alt="M.weblabs team member showcasing web development expertise"
+              alt="X.weblabs team member showcasing web development expertise"
               className="w-full h-min"
               loading="lazy"
             />
@@ -113,7 +113,7 @@ export default function Hero() {
           <div className="h-1/2 flex justify-center items-center pl-8">
             <img
               src={Logo}
-              alt="M.weblabs company logo"
+              alt="X.weblabs company logo"
               className="w-11/12 h-min"
               loading="lazy"
             />
